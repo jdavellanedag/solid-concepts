@@ -1,0 +1,20 @@
+package solid.concepts.srp;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Recommender {
+
+	public List<Movie> recommendations(Client client) {
+
+		List<Movie> recommended = new ArrayList<>();
+
+		for (Movie favorite : client.getFavorites()) {
+			recommended.addAll(BBDD.MOVIES_BY_DIRECTOR.get(favorite.getDirector()));
+		}
+		recommended.removeAll(client.getFavorites());
+
+		return recommended;
+	}
+
+}
